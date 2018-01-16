@@ -1,0 +1,19 @@
+1、什么是node.js ？ a：这是一种通过JavaScript语言开发web服务端的东西; 
+		    b：一种javascript的运行环境，能够使得javascript脱离浏览器运行;
+		    c：node.js可以看成是apache/tomcat,JavaScript可以对应看成是php/jsp语言。google v8 引擎被嵌入到node.js当中，用来解释		
+
+                   JavaScript语言;
+
+2、node.js能干什么 ？
+	a：
+适用于处理IO频繁但是CPU计算简单的场景，
+放到真正的业务场景之中作为中间层是再好不过的选择：在单页应用流行的今天可以轻松实现前后端	
+
+           同构，以此来提升页面渲染、加载速度，去除单页应用不利于SEO的负面影响。使用node可以对不同的后端服务进行一次全面整合，包括权限控制  
+
+         等很多方面。js是前端程序员所最熟悉的语言之一，学习成本低但是收益高，node所实现的中间层完全可以由前端程序员完成。
+
+
+
+3、为什么要用node.js ? 
+	a：node.js有非阻塞，事件驱动I/O等特性，从而让高并发（high concurrency）在的轮询（Polling）和comet构建的应用中成为可能。
