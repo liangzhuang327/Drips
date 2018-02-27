@@ -1,0 +1,13 @@
+
+Babel 是一个编译器。从宏观角度看，它将运行代码分为3个阶段: 解析，转换，及生成(与其他编译器相同).
+
+一、babel-runtime只会对es6的语法进行转换，而不会对新api进行转换。如果需要转换新api，就要引入babel-polyfill；启用插件 babel-plugin-       transform-runtime 后，Babel 就会使用 babel-runtime 下的工具函数；
+
+    这个只针对Node.js的项目使用babel来编译的情况，如果是写前端项目（用webpack打包）的话，就可以无视这个问题了。
+
+　　因为babel编译es6到es5的过程中，babel-plugin-transform-runtime这个插件会自动polyfill es5不支持的特性，这些polyfill包就是在babel-runtime　　这个包里，所以babel-runtime需要安装在dependency而不是devDependency。
+
+　　dependency和devDependency应该能明白吧。假如一个用户npm install 了你发布在npm上的一个包，他只会安装这个包的dependency依赖，devDependency　　是不会安装的，那么此时假如babel-runtime是安装在devDependency的话，有些polyfill就会找不到了。
+
+　　至于这两个包有什么区别，字面意思就能看出来，一个是转化的包（插件），一个是充满polyfill的包
+１、babel-preset-es2015等等可以替换用babel-preset-env来代替，env会自动匹配最新版本的JavaScript的所有插件
