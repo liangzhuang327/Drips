@@ -1,5 +1,11 @@
 # Immutable
 
+<https://github.com/facebook/immutable-js>
+
+------
+
+
+
 ## （一）、 toJS() , toArray(), toObject()
 
 ​	toJS()是深层转换，另外两个是浅转换，只转换最外一层
