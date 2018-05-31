@@ -14,6 +14,10 @@
 
 ​	immutable数据格式是“不可更改的”，每次改变更新imuutable对象的属，都会基于原对象生成一个新的immutable对象（无论merge还是set等）；所以在redux中，每次执行action中的计算时都会生成一个新的immutable对象，每次return的对象就是当前store中的最新state，但老的那个immutable对象到底去哪里了？存在堆栈中？浪费内存？耗费性能？运行越来越慢？还没懂
 
+- 代码
 
+  ![代码](https://github.com/liangzhuang327/Drips/blob/master/pictrues/WX20180531-162554%402x.png)
 
-运行结果如上图
+运行结果如下图
+
+![运行结果](https://github.com/liangzhuang327/Drips/blob/master/pictrues/WX20180531-162648%402x.png)
