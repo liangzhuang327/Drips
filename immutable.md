@@ -18,6 +18,6 @@
 
   ![代码](https://github.com/liangzhuang327/Drips/blob/master/pictrues/WX20180531-162554%402x.png)
 
-运行结果如下图
+- 运行结果如下图
 
 ![运行结果](https://github.com/liangzhuang327/Drips/blob/master/pictrues/WX20180531-162648%402x.png)
