@@ -52,7 +52,7 @@
 
 - fetch的返回response，并不是我们预想的格式，而是返回了一个带有body和请求状态的集合，我们需要个服务返回都在这个body（ReadableStream流之中）；所以我们需要调用一个恰当的方法来转换这个流（.json(), .text(), .blob()）；
 
-  ​    
+  ​    ![fetch返回](https://github.com/liangzhuang327/Drips/blob/master/pictrues/fetch_1.png)
 
 
 
