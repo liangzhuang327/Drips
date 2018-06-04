@@ -30,7 +30,7 @@
               // 服务错误处理
               return
           }
-          let data = response.json();
+          let data = await response.json();
           return data // 服务返回的数据data
       } catch(error){
           console.error(error)//reject模式，网络错误等造成
@@ -47,6 +47,16 @@
 
 
 - 在触屏项目中（零售用的触屏机器），亲测用fetch发送的请求会相对于ajax形式多处300毫秒，在触屏上就会差距很大
+
+
+
+- fetch的返回response，并不是我们预想的格式，而是返回了一个带有body和请求状态的集合，我们需要个服务返回都在这个body（ReadableStream流之中）；所以我们需要调用一个恰当的方法来转换这个流（.json(), .text(), .blob()）；
+
+  ​    
+
+
+
+- ​
 
 
 
