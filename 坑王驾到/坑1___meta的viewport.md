@@ -2,7 +2,7 @@
 >
 > 问题原因：viewport没有设置，html继承的默认视口的宽度，此时安卓联迪设备的默认视口宽度是980，根html继承的宽度就为980
 >
-> ![image-20180913134024646](/Users/liangzha/Library/Application Support/typora-user-images/image-20180913134024646.png)
+>
 >
 > 疑惑：为什么端上的viewport要设置成980？为了让pc页面到手机上的时候，不至于挤成一团
 >
