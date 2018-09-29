@@ -27,3 +27,14 @@
 - 运行结果如下图
 
 ![运行结果](https://github.com/liangzhuang327/Drips/blob/master/pictrues/WX20180531-162648%402x.png)
+
+------
+
+以上为一阶段；
+
+以下为二阶段，暂时没有总结，列出参考文档
+
+------
+
+[深入探究Immutable.js的实现机制（一）]: https://juejin.im/post/5b9b30a35188255c6418e67c
+
