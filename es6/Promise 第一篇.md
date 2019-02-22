@@ -61,12 +61,20 @@ promise1.then(() => {
 
 let promise2 = Promise.resolve();
 
-promise2.then(() => {
+promise2.then(() => { 
     throw Error('this is a error');  
 }).catch(err => {
     console.log('handle err:', err);    //handle err: Error: this is a error，catch来捕获整个promise对象中的错误
 })
 ```
+
+###### 3、promise的特点：
+
+> 1、promise可以理解为一个容器，里边包含着一个未来才会结束的事件（异步）结果
+>
+> 2、promise有三种状态：pending、fulfilled、reject，三种状态外界无法改变，只能由容器里边的未来事件来决定，一旦状态凝固不可改变。此时容器保存结果，无论何时调用立即返回结果（事件是错过了触发点，是得不到结果的）
+>
+> 3、promise一直链式调用，存在好多then的缺点，并且传递参数特别麻烦（async／await解决此种弊端）
 
 
 
@@ -133,3 +141,7 @@ func_() // Promise {<pending>}
 
 ```
 
+
+
+参考资料
+async await 的原理[这里](https://blog.csdn.net/Merciwen/article/details/80963279)
