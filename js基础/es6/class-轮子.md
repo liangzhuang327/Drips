@@ -50,7 +50,7 @@ var Person = function(props){
 // 这样new Person() 无论用target中的class Person还是这里的Person都能得到同样的结果
 ```
 
-
+![](https://github.com/liangzhuang327/Drips/blob/master/pictrues/WechatIMG1.jpeg)
 
 ##### h
 
