@@ -131,16 +131,21 @@ let c = getMultiplication(0.12, 0.11, 'add') //0.23
 
 ### toFixed如何正确的使用
 toFixed是一种有着一套比较精确的修约规则来修约的；<br/>
-如果你只是想用toFixed实现简单的四舍五入就有点大材小用了，但是js又没有另外一个api来实现简单的四舍五入，那我们就自己实现以下：
+如果你只是想用toFixed实现简单的四舍五入就有点大材小用了，但是js又没有另外一个api来实现简单的四舍五入，那我们就自己实现以下，下边贴一下lodash中的源码-_-：
 ```js
- const toSimpleFixed = (value, decimal) => {
-  if (!decimal) return value
-  const pow = Math.pow(10, decimal);
-  let returnValue = Math.round(Math.abs(value) * pow) / pow;
-  if (value < 0)
-    returnValue = -returnValue;
-  return returnValue.toFixed(decimal);
-}
+ const toSimpleFixed = (number, precision) => {
+    precision = precision == null ? 0 : (precision >= 0 ? Math.min(precision, 292) : Math.max(precision, -292))
+    if (precision) {
+      let pair = `${number}e`.split('e')
+      const value = func(`${pair[0]}e${+pair[1] + precision}`)
+
+      pair = `${value}e`.split('e')
+      return +`${pair[0]}e${+pair[1] - precision}`
+    }
+    return func(number)
+  }
+
+  // 为什么1.255e2和1.255*100得到的值不一样！不太明白
 ```
 
 [本文参考](https://juejin.im/post/5bdbff00f265da6116393c17)
