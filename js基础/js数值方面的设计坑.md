@@ -137,12 +137,12 @@ toFixed是一种有着一套比较精确的修约规则来修约的；<br/>
     precision = precision == null ? 0 : (precision >= 0 ? Math.min(precision, 292) : Math.max(precision, -292))
     if (precision) {
       let pair = `${number}e`.split('e')
-      const value = func(`${pair[0]}e${+pair[1] + precision}`)
+      const value = Math.round(`${pair[0]}e${+pair[1] + precision}`)
 
       pair = `${value}e`.split('e')
       return +`${pair[0]}e${+pair[1] - precision}`
     }
-    return func(number)
+    return Math.round(number)
   }
 
   // 为什么1.255e2和1.255*100得到的值不一样！不太明白
