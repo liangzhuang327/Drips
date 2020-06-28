@@ -1,0 +1,39 @@
+{
+  "name": "test-babel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "emptyBabel": "cross-env type=empty node --inspect ./node_modules/@babel/cli/bin/babel.js ./src/emptyBabel.js -o ./dist/emptyBabelResult.js ",
+    "env": "cross-env type=env babel ./src/babel_env.js -o ./dist/babel_envResult.js --presets=@babel/env",
+    "polyfill": "cross-env type=polyfill webpack --webpack.config.js",
+    "babelLoader": "cross-env type=babelLoader node --inspect ./node_modules/webpack/bin/webpack.js --webpack.config.js",
+    "babelRuntime": "cross-env type=babelRuntime node --inspect ./node_modules/webpack/bin/webpack.js --webpack.config.js",
+    "babelRegister": "cross-env type=babelRegister node --inspect ./node_modules/webpack/bin/webpack.js --webpack.config.js"
+  },
+  "keywords": [
+    "babel"
+  ],
+  "author": "lz",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/register": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.10.2",
+    "@babel/runtime-corejs3": "^7.10.2",
+    "babel-polyfill": "^6.26.0",
+    "cross-env": "^7.0.2"
+  }
+}

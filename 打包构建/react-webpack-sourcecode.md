@@ -53,3 +53,21 @@
 > loader如何处理文件？
 > 处理好的文件如何加载到浏览器中？
 #### 3、compilication实例
+
+
+
+
+
+
+
+
+
+
+
+
+补充
+### loader的加载过程（从读取参数中的loader到加载loader）
+
+核心文件
+
+loadLoader => loadRunner => NormalModule => compilation => webpeck （中间还有很多细节）
