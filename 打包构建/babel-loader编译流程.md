@@ -10,6 +10,72 @@ babel-traverse: 6.26.0
 
 babel-generator: 6.26.1
 
+#### Babel编译大致流程和核心模块
+---
+[babel插件手册](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md)
+
+Babel 的三个主要处理步骤分别是： **解析（parse），转换（transform），生成（generate）。**
+
+##### 解析
+解析步骤接收代码并输出 AST。 这个步骤分为两个阶段：**词法分析（Lexical Analysis） 和 语法分析（Syntactic Analysis）。**
+
+主要用`BabyLon`核心库 来实现**解析**
+```js
+import * as babylon from "babylon";
+
+const code = `function square(n) {
+  return n * n;
+}`;
+
+babylon.parse(code);
+```
+
+##### 转换
+转换步骤接收 AST 并对其进行遍历，在此过程中对节点进行添加、更新及移除等操作。 这是 Babel 或是其他编译器中最复杂的过程 同时也是插件将要介入工作的部分，这将是本手册的主要内容， 因此让我们慢慢来。
+
+**babel-traverse** 库（遍历）模块维护了整棵树的状态，并且负责替换、移除和添加节点。
+```js
+import * as babylon from "babylon";
+import traverse from "babel-traverse";
+
+const code = `function square(n) {
+  return n * n;
+}`;
+
+const ast = babylon.parse(code);
+
+traverse(ast, {
+  enter(path) {
+    if (
+      path.node.type === "Identifier" &&
+      path.node.name === "n"
+    ) {
+      path.node.name = "x";
+    }
+  }
+});
+```
+
+##### 生成
+代码生成步骤把最终（经过一系列转换之后）的 AST 转换成字符串形式的代码，同时还会创建源码映射（source maps）。代码生成其实很简单：深度优先遍历整个 AST，然后构建可以表示转换后代码的字符串。
+
+`babel-generator`库 是 Babel 的代码生成器，它读取AST并将其转换为代码和源码映射（sourcemaps）。
+```js
+import * as babylon from "babylon";
+import generate from "babel-generator";
+
+const code = `function square(n) {
+  return n * n;
+}`;
+
+const ast = babylon.parse(code);
+
+generate(ast, {}, code);
+// {
+//   code: "...",
+//   map: "..."
+// }
+```
 ### 1、参数准备
 ---
 

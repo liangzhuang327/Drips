@@ -249,17 +249,9 @@ Babel 7为什么又多出一直配置的方式？([英文能力过关还是建�
 因为大多数参数都是提供给Babel编程来用，比如写Babel相关的工具。对于大多数Babel集成用户来说不大能用到
 故这部分内容就先不写了 [官网地址](https://www.babeljs.cn/docs/options)
 
-## 常用的插件和预设
+## 如何在项目中加载babel的配置
 
----
-
-
-## polyfill/transform-runtime
-
----
-
-
-## register
+### register
 
 ---
 
