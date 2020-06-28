@@ -251,7 +251,92 @@ Babel 7为什么又多出一直配置的方式？([英文能力过关还是建�
 
 ## 如何在项目中加载babel的配置
 
-### register
+---
+> 本部分可以理解为在项目中使用Babel的集中方式
+
+### 1、babel-loader
+
+---
+
+因为在实际项目中肯定会离不开打包，压缩等，而现在最常用的就是`webpack`；此种方式是以webpack的loader的形式引入`Babel`,在编译时对代码做转译，此种方案最常用
+
+1、一种配置方式如下：
+webpack只是单纯加载babel-loader,babel的配置在babel.config.js配置
+```js
+// webpack.config.js
+module: {
+  rules: [
+    {
+      test: /\.js$/,
+      use: {
+        loader: 'babel-loader',
+      }
+    }
+  ]
+}
+
+// babel.config.js
+{
+        "presets": ['env'],
+        "plugins": ['module-resolver'],
+        "cacheDirectory": true
+}
+```
+
+2、另一中配置方式如下：
+webpack在加载babel-loader的时候，以loader参数形式传如Babel的配置信息
+
+```js
+module: {
+  rules: [
+    {
+      test: /\.js$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env'],
+          plugins: [require('@babel/plugin-transform-object-rest-spread')]
+        }
+      }
+    }
+  ]
+}
+```
+
+### 2、babel-node引入
+
+---
+
+此种方式是在项目启动时候，读取babel配置将**转译功能**融合到require上，相当于一个hooks增强require；在引用模块的时候实时转译代码(不要用到生产环境下)；
+此种方式多用于**node项目中**，可以在node项目中使用es6等新特性
+
+```js
+// shell启动
+babel-node ./src/server/index.js
+
+// babel.config.js
+{
+        "presets": ['env'],
+        "plugins": ['module-resolver'],
+        "cacheDirectory": true
+}
+```
+
+### 3、CLI形式
+
+---
+
+此种方式即以命令行的形式引入Babel（前提安装了babel-cli），命令行中可以传如参数以及配置；本人都是在做小demo的时候用此种方式，简单，方便，明了；缺点就是要记住如何传参以及在命令行里添加配置
+
+```js
+// 命令行
+babel ./src/babel_env.js -o ./dist/babel_envResult.js --presets=@babel/env
+```
+上面的意思是：编译源文件./src/babel_env.js, 将编译后的代码输出到./dist/babel_envResult.js这个文件中；**-o**的意思是输出地址，**--presets**就是babel的配置中的预设。
+更多的命令可以参考[babel的cli](https://www.babeljs.cn/docs/babel-cli)
+
+### 4、register
 
 ---
 
