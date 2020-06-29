@@ -107,7 +107,7 @@ var map = new _babel_runtime_corejs3_core_js_stable_weak_map__WEBPACK_IMPORTED_M
 
 在项目中如果想实时的跟着潮流走，体验新的特性语法，那么这部分的插件可定会更新的比较频繁，如果一出现新的特性你就想加入到你的项目中，就需要找到能支持这一特性的插件，如果市面上还没有，只能自己实现这类插件了，说到这里你也就能理解了所有浏览器不支持新特性都是**语法糖**；如果最新的也就是用到了es6的特性以及async/await这些就几乎不需要配置额外的插件就能完成code的转译
 
-### babel-plugin-module-resolver
+### 1、babel-plugin-module-resolver
 > 此插件用以解决引用模块时候相对路径计算繁琐的问题。对于一些常用的文件夹／文件做“别名”处理，在引用的时候就可以直接引用“别名”从而不用在计算相对路径
 
 ```js
@@ -123,4 +123,31 @@ var map = new _babel_runtime_corejs3_core_js_stable_weak_map__WEBPACK_IMPORTED_M
 import { funcitonA } from 'utils/A'
 // no user plugin
 import { functionA } from '../../../client/common/helpers/utils/A'
+```
+
+### 2、babel-plugin-import
+
+> 实现antd antd-mobile loadsh 等包的按需加载
+
+```js
+//Via .babelrc or babel-loader.
+{
+  "plugins": [["import", options]]
+}
+
+// 按需加载antd 以及样式
+{
+    "plugins": [
+        ["import", { "libraryName": "antd", style: "css" || true }]
+    ]
+}
+// test.js 
+import { Button } from 'antd';
+ReactDOM.render(<Button>xxxx</Button>);
+ 
+      ↓ ↓ ↓ ↓ ↓ ↓
+// 经过此babel-plugin-import插件处理后 
+var _button = require('antd/lib/button');
+require('antd/lib/button/style/css');
+ReactDOM.render(<_button>xxxx</_button>);
 ```
